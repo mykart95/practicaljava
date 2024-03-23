@@ -1,0 +1,11 @@
+[Practical Java] [2m18:00:03.556[0;39m [32m INFO[0;39m [2m---[0;39m [36mc.c.p.PracticaljavaApplication          [0;39m [2m:[0;39m Starting PracticaljavaApplication using Java 17.0.9 with PID 17028 (C:\Users\karth\Downloads\practicaljava\bin\main started by karth in C:\Users\karth\Downloads\practicaljava)
+[Practical Java] [2m18:00:03.556[0;39m [32m INFO[0;39m [2m---[0;39m [36mc.c.p.PracticaljavaApplication          [0;39m [2m:[0;39m No active profile set, falling back to 1 default profile: "default"
+[Practical Java] [2m18:00:03.639[0;39m [32m INFO[0;39m [2m---[0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat initialized with port 8080 (http)
+[Practical Java] [2m18:00:03.651[0;39m [32m INFO[0;39m [2m---[0;39m [36mo.apache.catalina.core.StandardService  [0;39m [2m:[0;39m Starting service [Tomcat]
+[Practical Java] [2m18:00:03.652[0;39m [32m INFO[0;39m [2m---[0;39m [36mo.apache.catalina.core.StandardEngine   [0;39m [2m:[0;39m Starting Servlet engine: [Apache Tomcat/10.1.19]
+[Practical Java] [2m18:00:03.664[0;39m [32m INFO[0;39m [2m---[0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring embedded WebApplicationContext
+[Practical Java] [2m18:00:03.664[0;39m [32m INFO[0;39m [2m---[0;39m [36mw.s.c.ServletWebServerApplicationContext[0;39m [2m:[0;39m Root WebApplicationContext: initialization completed in 106 ms
+[Practical Java] [2m18:00:03.717[0;39m [32m INFO[0;39m [2m---[0;39m [36mo.s.b.d.a.OptionalLiveReloadServer      [0;39m [2m:[0;39m LiveReload server is running on port 35729
+[Practical Java] [2m18:00:03.726[0;39m [32m INFO[0;39m [2m---[0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port 8080 (http) with context path ''
+[Practical Java] [2m18:00:03.730[0;39m [32m INFO[0;39m [2m---[0;39m [36mc.c.p.PracticaljavaApplication          [0;39m [2m:[0;39m Started PracticaljavaApplication in 0.199 seconds (process running for 1668.423)
+[Practical Java] [2m18:00:03.732[0;39m [32m INFO[0;39m [2m---[0;39m [36m.ConditionEvaluationDeltaLoggingListener[0;39m [2m:[0;39m Condition evaluation unchanged
