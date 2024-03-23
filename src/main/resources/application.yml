@@ -1,0 +1,10 @@
+#logging:
+#  pattern:
+#    console: "[Practical Java] %clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{${LOG_LEVEL_PATTERN}} %clr{${sys:PID}}{magenta}"
+#    
+#    
+spring:
+  main:
+    banner-mode: OFF
+#server:
+#  port: 8089
