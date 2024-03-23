@@ -26,4 +26,5 @@ public class DefaultRestApi {
 	public String time() {
 		return LocalDate.now().toString();
 	}
+	
 }
