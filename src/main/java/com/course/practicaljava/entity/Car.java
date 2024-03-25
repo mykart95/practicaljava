@@ -1,107 +1,170 @@
 package com.course.practicaljava.entity;
 
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@Document(indexName = "practicaljava")
+@JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Car {
 
-	private List<String> additionalFeatures;
-	private boolean available;
-	private String brand;
-	private String color;
-	private Engine engine;
-	private LocalDate firstReleaseDate;
-	private int price;
-	private String type;
-	private List<Tyre> tyre;
-	
-	public Car() {
-	}
+  @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
+  private List<String> additionalFeatures;
+  
+  private boolean available;
 
-	public Car(String brand, String color, String type) {
-		super();
-		this.brand = brand;
-		this.color = color;
-		this.type = type;
-	}
+  private String brand;
 
-	public List<String> getAdditionalFeatures() {
-		return additionalFeatures;
-	}
+  private String color;
 
-	public String getBrand() {
-		return brand;
-	}
+  @JsonUnwrapped
+  private Engine engine;
+  
+  @Field(type = FieldType.Date, format = DateFormat.date)
+  @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Jakarta")
+  private LocalDate firstReleaseDate;
+  
+  @Id
+  private String id;
+  
+  private int price;
 
-	public String getColor() {
-		return color;
-	}
+  @JsonInclude(value = JsonInclude.Include.NON_EMPTY)  
+  private String secretFeature;
+  
+  @Transient
+  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Asia/Jakarta")
+  private ZonedDateTime timestamp = ZonedDateTime.now();
+  
+  private List<Tire> tires;
+  
+  private String type;
+  
+  public Car() {
 
-	public Engine getEngine() {
-		return engine;
-	}
+  }
+  
+  public Car(String brand, String color, String type) {
+    super();
+    this.brand = brand;
+    this.color = color;
+    this.type = type;
+  }
+  
+  public List<String> getAdditionalFeatures() {
+    return additionalFeatures;
+  }
 
-	public LocalDate getFirstReleaseDate() {
-		return firstReleaseDate;
-	}
+  public String getBrand() {
+    return brand;
+  }
 
-	public int getPrice() {
-		return price;
-	}
+  public String getColor() {
+    return color;
+  }
 
-	public String getType() {
-		return type;
-	}
+  public Engine getEngine() {
+    return engine;
+  }
 
-	public List<Tyre> getTyre() {
-		return tyre;
-	}
+  public LocalDate getFirstReleaseDate() {
+    return firstReleaseDate;
+  }
 
-	public boolean isAvailable() {
-		return available;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public void setAdditionalFeatures(List<String> additionalFeatures) {
-		this.additionalFeatures = additionalFeatures;
-	}
+  public int getPrice() {
+    return price;
+  }
 
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
+  public String getSecretFeature() {
+    return secretFeature;
+  }
 
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
+  public ZonedDateTime getTimestamp() {
+    return timestamp;
+  }
 
-	public void setColor(String color) {
-		this.color = color;
-	}
+  public List<Tire> getTires() {
+    return tires;
+  }
 
-	public void setEngine(Engine engine) {
-		this.engine = engine;
-	}
+  public String getType() {
+    return type;
+  }
 
-	public void setFirstReleaseDate(LocalDate firstReleaseDate) {
-		this.firstReleaseDate = firstReleaseDate;
-	}
+  public boolean isAvailable() {
+    return available;
+  }
 
-	public void setPrice(int price) {
-		this.price = price;
-	}
+  public void setAdditionalFeatures(List<String> additionalFeatures) {
+    this.additionalFeatures = additionalFeatures;
+  }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+  public void setAvailable(boolean available) {
+    this.available = available;
+  }
 
-	public void setTyre(List<Tyre> tyre) {
-		this.tyre = tyre;
-	}
+  public void setBrand(String brand) {
+    this.brand = brand;
+  }
 
-	@Override
-	public String toString() {
-		return "Car [additionalFeatures=" + additionalFeatures + ", available=" + available + ", brand=" + brand
-				+ ", color=" + color + ", firstReleaseDate=" + firstReleaseDate + ", price=" + price + ", type=" + type
-				+ ", engine=" + engine + ", tyre=" + tyre + "]";
-	}
+  public void setColor(String color) {
+    this.color = color;
+  }
+
+  public void setEngine(Engine engine) {
+    this.engine = engine;
+  }
+
+  public void setFirstReleaseDate(LocalDate firstReleaseDate) {
+    this.firstReleaseDate = firstReleaseDate;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public void setPrice(int price) {
+    this.price = price;
+  }
+
+  public void setSecretFeature(String secretFeature) {
+    this.secretFeature = secretFeature;
+  }
+
+  public void setTimestamp(ZonedDateTime timestamp) {
+    this.timestamp = timestamp;
+  }
+
+  public void setTires(List<Tire> tires) {
+    this.tires = tires;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  @Override
+  public String toString() {
+    return "Car [additionalFeatures=" + additionalFeatures + ", available=" + available + ", brand=" + brand
+        + ", color=" + color + ", engine=" + engine + ", firstReleaseDate=" + firstReleaseDate + ", price=" + price
+        + ", tires=" + tires + ", type=" + type + ", timestamp=" + timestamp + ", secretFeature=" + secretFeature + "]";
+  }
 
 }

@@ -1,14 +1,13 @@
 package com.course.practicaljava.service.impl;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.stereotype.Service;
 
 import com.course.practicaljava.entity.Car;
 import com.course.practicaljava.entity.Engine;
-import com.course.practicaljava.entity.Tyre;
+import com.course.practicaljava.entity.Tire;
 import com.course.practicaljava.service.CarService;
 import com.course.practicaljava.util.RandomDateUtil;
 
@@ -40,9 +39,9 @@ public class RandomCarService implements CarService {
 		engine.setFuelType(feul);
 		engine.setHorsePower(hp);
 		
-		var tires=new ArrayList<Tyre>();
+		var tires=new ArrayList<Tire>();
 		for(int i=0; i<3; i++) {
-			var tire=new Tyre();
+			var tire=new Tire();
 			var prize=ThreadLocalRandom.current().nextInt(200, 401);
 			var size=ThreadLocalRandom.current().nextInt(15, 18);
 			var tyreManufacturer=TYRE_MANUFACTURERS.get(ThreadLocalRandom.current().nextInt(TYRE_MANUFACTURERS.size()));
@@ -58,7 +57,7 @@ public class RandomCarService implements CarService {
 		car.setPrice(price);
 		car.setAdditionalFeatures(additionalFeatures);
 		car.setEngine(engine);
-		car.setTyre(tires);
+		car.setTires(tires);
 		
 		return car;
 	}
