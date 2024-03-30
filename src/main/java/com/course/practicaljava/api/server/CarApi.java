@@ -8,6 +8,10 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,20 +87,30 @@ public class CarApi {
 	}
 	
 	@GetMapping(value = "/find-json", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Car> findCarByBrandAndColor(@RequestBody Car car){
-		return carElasticRepository.findByBrandAndColor(car.getBrand(), car.getColor());
+	public List<Car> findCarByBrandAndColor(@RequestBody Car car, 
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "10")int size){
+		var pageable=PageRequest.of(page, size, Sort.by(Direction.DESC, "price"));
+		return carElasticRepository.findByBrandAndColor(car.getBrand(), car.getColor(), pageable).getContent();
 	}
 	
 	@GetMapping(value = "/cars/{brand}/{color}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Car> findCarsByPath(@PathVariable("brand") String brand, 
-			@PathVariable("color") String color) {
-				return carElasticRepository.findByBrandAndColor(brand, color);
+			@PathVariable("color") String color,
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "10")int size) {
+		
+					var pageable=PageRequest.of(page, size, Sort.by(Direction.DESC, "price"));
+				return carElasticRepository.findByBrandAndColor(brand, color, pageable).getContent();
 			}
 	
 	@GetMapping(value="/cars", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Car> findCarByReqParam(@RequestParam(name = "brand", required = true) String brand, 
-			@RequestParam(name = "color", required = true) String color){
-		return carElasticRepository.findByBrandAndColor(brand, color);
+			@RequestParam(name = "color", required = true) String color,
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "10")int size){
+		var pageable=PageRequest.of(page, size, Sort.by(Direction.DESC, "price"));
+		return carElasticRepository.findByBrandAndColor(brand, color, pageable).getContent();
 	}
 	
 	@GetMapping(value = "/cars/date", produces = MediaType.APPLICATION_JSON_VALUE)
